@@ -1,0 +1,112 @@
+
+a {
+    text-decoration: none!important;
+}
+
+.search-form-group{
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-form-control {
+  display: block;
+  width: 100%;
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+  padding: $input-padding-y $input-padding-x;
+  font-family: $input-font-family;
+  @include font-size($input-font-size);
+  font-weight: $input-font-weight;
+  background-clip: padding-box;
+  border: $input-border-width solid;
+  border-radius: 0.25rem;
+  }
+.FloatingLabelInput {
+border-bottom: none!important;
+}
+
+#results {
+  width: 100%;
+}
+
+/*from style.css*/
+.callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  color: #000;
+  h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  code {
+    border-radius: 3px;
+  }
+  & + .bs-callout {
+    margin-top: -5px;
+  }
+}
+
+.callout-info {
+    border-left-color: #5bc0de;
+    h4 {
+      color: #5bc0de;
+    }
+  }
+
+
+
+/*blue-theme*/
+.c-header {
+    background: #19191c;
+    border-bottom: 3px solid #00000042;
+}
+
+.c-footer {
+    background: #19191c;
+    border-top: 3px solid #00000042;
+    color: #fff;
+}
+
+.c-header .c-header-nav .c-header-nav-link, .c-header .c-header-nav .c-header-nav-btn {
+    color: #fff;
+}
+
+.c-header .c-header-nav .c-header-nav-link:hover, .c-header .c-header-nav .c-header-nav-link:focus, .c-header .c-header-nav .c-header-nav-btn:hover, .c-header .c-header-nav .c-header-nav-btn:focus {
+    color: rgb(255 255 255 / 50%);
+}
+
+.c-app {
+    background: #19191c!important;
+
+}
+
+.card {
+    background: #19191c!important;
+    border: 2px solid #8594ad!important;
+    color: #fff;
+}
+
+input, button, select, optgroup, textarea {
+    background: none;
+    color: #fff;
+}
+
+
+
+
+// default theme(light)
+html {
+    --primaryBackground: #ffffff;
+    --primaryTextColor: #000000;
+}
+
+// dark theme
+html[data-theme="dark"] {
+    --primaryBackground: #19191c;
+    --primaryTextColor: #d2d2d4;
+}
