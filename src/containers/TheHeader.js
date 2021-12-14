@@ -39,6 +39,16 @@ const TheHeader = () => {
 
   return (
     <CHeader withSubheader>
+      <CToggler
+        inHeader
+        className="ml-md-3 d-lg-none"
+        onClick={toggleSidebarMobile}
+      />
+      <CToggler
+        inHeader
+        className="ml-3 d-md-down-none"
+        onClick={toggleSidebar}
+      />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         <CIcon name="logo" height="48" alt="Logo"/>
       </CHeaderBrand>
@@ -69,35 +79,7 @@ const TheHeader = () => {
           <CHeaderNavLink to="/users">Users</CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>*/}
-
-      <CHeaderNav className="px-3 d-none">
-        <TheHeaderDropdownNotif/>
-        <TheHeaderDropdownTasks/>
-        <TheHeaderDropdownMssg/>
-        <TheHeaderDropdown/>
-      </CHeaderNav>
-
-      <CSubheader className="px-3 justify-content-between d-none" >
-        <CBreadcrumbRouter
-          className="border-0 c-subheader-nav m-0 px-0 px-md-3"
-          routes={routes}
-        />
-          <div className="d-md-down-none mfe-2 c-subheader-nav d-none">
-            <CLink className="c-subheader-nav-link"href="#">
-              <CIcon name="cil-speech" alt="Settings" />
-            </CLink>
-            <CLink
-              className="c-subheader-nav-link"
-              aria-current="page"
-              to="/dashboard"
-            >
-              <CIcon name="cil-graph" alt="Dashboard" />&nbsp;Dashboard
-            </CLink>
-            <CLink className="c-subheader-nav-link" href="#">
-              <CIcon name="cil-settings" alt="Settings" />&nbsp;Settings
-            </CLink>
-          </div>
-      </CSubheader>
+{/*// d-none<CHeaderNav className="px-3"><CSubheader className="px-3 justify-content-between" ><div className="d-md-down-none mfe-2 c-subheader-nav">*/}
     </CHeader>
   )
 }

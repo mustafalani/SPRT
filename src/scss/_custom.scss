@@ -3,6 +3,21 @@ a {
     text-decoration: none!important;
 }
 
+.c-sidebar {
+    color: #fff;
+    background: #6c757d;
+}
+
+
+.c-sidebar .c-sidebar-nav-link:hover, .c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+    color: #fff;
+    background: #04abfb;
+}
+
+.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle {
+    background: #04abfb;
+}
+
 .search-form-group{
   margin-left: auto;
   margin-right: auto;

@@ -4,9 +4,9 @@ import CIcon from '@coreui/icons-react'
 const _nav =  [
   {
     _tag: 'CSidebarNavItem',
-    name: 'Ingest',
-    to: '/ingest',
-    icon: 'cil-scrubber',
+    name: 'Search',
+    to: '/search',
+    icon: 'cil-search',
   },
   /*{
     _tag: 'CSidebarNavItem',
