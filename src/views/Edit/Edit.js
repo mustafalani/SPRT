@@ -1,16 +1,22 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import FloatingLabelInput from 'react-floating-label-input';
+import ReactQuill, { Quill } from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   CButton,
   CCard,
   CCardBody,
   CCardHeader,
+  CCardFooter,
   CCol,
   CFormGroup,
-  CInputGroupAppend,
-  CRow
+  CRow,
+  CLabel
 } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 import { DocsLink } from 'src/reusable'
 import MongoQueries from '../../utils/api/mongoQueries';
 
@@ -18,7 +24,22 @@ var url = window.location.href
 var docID = url.substring(url.lastIndexOf('/') + 1);
 //var _document = {}
 
-const Edit = ({value}) => {
+const QuillOptions = {
+          toolbar: [
+                      [{ header: [1, 2, false] }],
+                      ['bold', 'italic', 'underline', 'blockquote'],
+                      [{ list: 'ordered' }, { list: 'bullet' }],
+                      [{'color': []}],
+                      [{'background': []}],
+                      ['link', 'video'],
+                      ['clean'],
+                      ['code-block']
+                    ],
+      };
+
+const Edit = () => {
+
+const QuillData = {"_id": docID};
 
 const [doc, setDoc] = useState([])
 
@@ -50,6 +71,45 @@ async function getDocByID() {
 })
 }
 
+
+async function saveDoc() {
+
+    MongoQueries.SaveDocument(QuillData).then(function (response) {
+                if(!response.ok){
+                    console.log(response);
+                    if (response.json.length === 0)
+                    toast.error("Something Went Wrong!");
+                }
+                return response.json();
+            })
+            .then(function (resultJSON) {
+                if (resultJSON["$undefined"] === true) {
+                    toast.error("Something Went Wrong!");
+                    console.log('Something Went Wrong');
+                    return(resultJSON);
+                } else {
+                    console.log("Saving... "  );
+                    if (resultJSON.modifiedCount.$numberInt > 0) {
+                        toast.success("Changes Have been Successfully Saved")
+                        console.log('it is not zero')
+                    } else {
+                        toast.info("There are no changes to save in the document")
+                        console.log('it is zero')
+                    }
+                }  // end of ELSE
+})
+}
+
+
+
+const QuillChange = (html, delta, source, editor, key) => {
+  if (source !== 'api')
+    {
+        html = html.replace(/<\/?p>/g, '')
+        QuillData[key] = html
+   }
+}
+
 useEffect(() => {
   getDocByID()
 }, [])
@@ -60,20 +120,12 @@ console.log(doc)
     <>
       <CRow>
         <CCol xs="12" sm="9" className="search-form-group">
-          <CCard>
             <CCardHeader>
-              Edit Document
+              Editing Document
               <small style={{color: 'blue' }}> {docID}</small>
               <DocsLink name="search"/>
             </CCardHeader>
             <CCardBody>
-              <CFormGroup row>
-                <CCol sm="12">
-                  <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
-                    <FloatingLabelInput id="TITL" label="Titel:" value={doc.TITL} required/>
-                  </CFormGroup>
-                </CCol>
-              </CFormGroup>
                 {
                   Object.entries(doc).map(([key, value]) => (
                   <>
@@ -142,14 +194,22 @@ console.log(doc)
                       itemName = "Stat"
                       }
                       else {(itemName = key)}
-                    if (key !== "_id" && key!== "TITL" && key!== "DOCN") {
+                    if (key !== "_id" && key!== "DOCN") {
+                      Quill.register({'attributors/attribute/id': key}, true);
                         return (
                           <CFormGroup row>
-                            <CCol sm="12">
-                              <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
-                                <FloatingLabelInput id={key} label={itemName} value={value} required/>
+                          <CCard>
+                            <CCardHeader>
+                              <CLabel labelFor={key}>{itemName}</CLabel>
+                            </CCardHeader>
+                            <CCardBody>
+                              <CFormGroup>
+                                <CCol sm="12" className='QuillHeader'>
+                                    <ReactQuill id={key} modules={QuillOptions} value={value} onChange={(html, delta, source, editor) => {QuillChange(html, delta, source, editor, key)}}/>
+                                </CCol>
                               </CFormGroup>
-                            </CCol>
+                            </CCardBody>
+                          </CCard>
                           </CFormGroup>
                         )
                       }
@@ -157,25 +217,10 @@ console.log(doc)
                   </>
                   ))
                 }
-              <CFormGroup row>
-                <CCol>
-                  <CInputGroupAppend>
-                    <CButton color="secondary" onClick={() => MongoQueries.FindDocByID(docID)} style={{ width: '100%' }}>Save</CButton>
-                  </CInputGroupAppend>
-                </CCol>
-              </CFormGroup>
             </CCardBody>
-            <div class="col-md">
-                <div className='d-flex justify-content-center align-items-center'>
-                    <div class="text-center">
-                        <h3 id="counter" className="font-weight-bold text-center "></h3>
-                    </div>
-                  </div>
-                  <div className='d-flex justify-content-center align-items-center'>
-                        <div id="results"></div>
-                  </div>
-            </div>
-          </CCard>
+            <CCardFooter>
+              <CButton color="danger" onClick={() => getDocByID()} style={{ width: '30%' }}>Discard Changes</CButton> <CButton color="secondary" onClick={() => saveDoc()} style={{ width: '30%' }}>Save</CButton>
+            </CCardFooter>
         </CCol>
       </CRow>
     </>

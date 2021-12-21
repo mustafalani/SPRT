@@ -175,6 +175,21 @@ html[data-theme="dark"] {
   		0%		{ background-color: #ff000000;}
   		100%		{ background-color: #fbff0038;}
   	}
+
+.ql-toolbar.ql-snow {
+  border: unset!important;
+  position: absolute;
+  padding: 0.5rem 1rem;
+  top: 0;
+  right: 0;
+}
+
+.ql-container.ql-snow {
+  border: unset!important;
+}
+.QuillHeader{
+  position: inherit;
+}
 .action-btn {
     margin: 1px!important;
     line-height: 1!important;

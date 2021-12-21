@@ -28,4 +28,30 @@ export default class MongoQueries {
           body: JSON.stringify(data),
         })
         return res
-  }}
+  }
+
+  static SaveDocument(docData) {
+
+    //----------------- MODIFY WEBHOOK_URL BELOW ------------------------
+    const server = settings[0].MongoDB.server
+    const secret = settings[0].MongoDB.secret
+    const update = settings[0].MongoDB.webhooks.update
+
+    let webUrl = server+'/'+update+'?secret='+secret
+    //console.log(webUrl)
+
+    //let webhook_url = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sprt-zzhhc/service/SPRT-SEARCH/incoming_webhook/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
+
+    const data = docData
+
+    var res = fetch(webUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    return res
+
+  }
+}
