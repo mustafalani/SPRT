@@ -58,7 +58,7 @@ const TheHeader = () => {
           <CHeaderNavLink to="/search">Search</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/search">Add New</CHeaderNavLink>
+          <CHeaderNavLink to="/insert">Insert Document</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3" >
           <CHeaderNavLink to="/search">Settings</CHeaderNavLink>

@@ -1,5 +1,9 @@
 import ReactQuill, { Quill } from "react-quill";
 import 'react-quill/dist/quill.bubble.css';
+
+import settings from '../../utils/api/settings.js';
+const fields = settings[0].Fields
+
 export default class MongoDB {
 
   static search() {
@@ -10,7 +14,7 @@ export default class MongoDB {
         console.log(searchString);
 
         //----------------- MODIFY WEBHOOK_URL BELOW ------------------------
-        let webhook_url = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sprt-bvzmi/service/sport/incoming_webhook/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
+        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
         //let webhook_url = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sprt-zzhhc/service/SPRT-SEARCH/incoming_webhook/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
 
 
@@ -181,58 +185,13 @@ export default class MongoDB {
                         <td>${obje["$oid"]}</td>
                       </tr>`
                 for (var key in items) {
-                  var itemName = key
+                  var itemName
                   if (key !== "_id" && key !== "highlight" && key !== "score" && key!== "DOCN" && key!== "TITL" && key!== "UDAT" && key!== "IDAT" && key!== "RDAT") {
-                        if (key === "OPHV") {
-                          itemName = "Reporter"
+                        if (fields[key] !== undefined) {
+                          itemName = fields[key]
                         }
-
-                        if (key === "BEMK") {
-                          itemName = "Bemærk"
-                        }
-
-                        if (key === "BAGR") {
-                          itemName = "Baggrund"
-                        }
-
-                        if (key === "BBSK") {
-                          itemName = "Billedbeskrivelse"
-                        }
-
-                        if (key === "MEDV") {
-                          itemName = "Medvirkende"
-                        }
-
-                        if (key === "KEYW") {
-                          itemName = "Emneord"
-                        }
-
-                        if (key === "LOKA") {
-                          itemName = "Lokalitet"
-                        }
-
-                        if (key === "BNTA") {
-                          itemName = "Båndtype"
-                        }
-
-                        if (key === "BNNA") {
-                          itemName = "Båndnummer"
-                        }
-
-                        if (key === "BNFA") {
-                          itemName = "Båndformat"
-                        }
-
-                        if (key === "LYDA") {
-                          itemName = "Lyd"
-                        }
-
-                        if (key === "TVST") {
-                          itemName = "TV Station"
-                        }
-
-                        if (key === "STAT") {
-                          itemName = "Stat"
+                        else {
+                          itemName = key
                         }
                         let obje = items["_id"]
                       dataTable += `

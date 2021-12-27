@@ -87,6 +87,12 @@ border-bottom: none!important;
     color: #fff;
 }
 
+.editButtonContainer {
+  background-color: unset!important;
+  border-top: none!important;
+  text-align: center;
+}
+
 .c-header .c-header-nav .c-header-nav-link, .c-header .c-header-nav .c-header-nav-btn {
     color: #fff;
 }
@@ -104,6 +110,10 @@ border-bottom: none!important;
     background: #19191c!important;
     border: 2px solid #8594ad!important;
     color: #fff;
+}
+
+.modal-content {
+  background: #19191c!important;
 }
 
 input, button, select, optgroup, textarea {
@@ -190,6 +200,22 @@ html[data-theme="dark"] {
 .QuillHeader{
   position: inherit;
 }
+
+.to-be-removed {
+  background-size: auto auto!important;
+  background-color: rgba(255, 255, 255, 0)!important;
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 12px, rgba(255, 0, 0, 0.17) 12px, rgba(255, 0, 0, 0.17) 15px )!important;
+}
+
+
+.deleteFieldsButtonContainer {
+    text-align: right;
+}
+
+.quill-actions:hover {
+    color: #06c;
+}
+
 .action-btn {
     margin: 1px!important;
     line-height: 1!important;

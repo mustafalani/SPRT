@@ -42,6 +42,7 @@ const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Search = React.lazy(() => import('./views/Search'));
 const SearchDoc = React.lazy(() => import('./views/docs/SearchDoc'));
 const Edit = React.lazy(() => import('./views/Edit'));
+const Insert = React.lazy(() => import('./views/Insert'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -89,6 +90,7 @@ const routes = [
   { path: '/search', name: 'Search SPRT', component: Search },
   { path: '/docs/search', name: 'Document - Search', component: SearchDoc },
   { path: '/edit', name: 'Edit Document', component: Edit },
+  { path: '/Insert', name: 'Insert Document', component: Insert },
 ];
 
 export default routes;

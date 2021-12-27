@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import FloatingLabelInput from 'react-floating-label-input';
 import ReactQuill, { Quill } from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import {toast} from 'react-toastify';
@@ -19,12 +18,6 @@ import {
   CFade,
   CLink,
   CTooltip,
-  CModal,
-  CModalBody,
-  CModalFooter,
-  CModalHeader,
-  CModalTitle,
-  CInput,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { DocsLink } from 'src/reusable'
@@ -33,8 +26,7 @@ import MongoQueries from '../../utils/api/mongoQueries';
 import settings from '../../utils/api/settings.js';
 const fields = settings[0].Fields
 
-var url = window.location.href
-var docID = url.substring(url.lastIndexOf('/') + 1);
+var docID = '000000000000';
 
 const QuillOptions = {
           toolbar: [
@@ -49,21 +41,15 @@ const QuillOptions = {
                     ],
       };
 
-const Edit = () => {
-
-  const [doc, setDoc] = useState([])
-  const update = {"_id": docID};
-  const setData = {};
-  const unsetData = {};
+const Insert = () => {
 
   const [collapsed, setCollapsed] = React.useState(true)
   const [showCard, setShowCard] = React.useState(true)
 
-  const [collapse, setCollapse] = useState(true)
+  const QuillData = {};
 
-  const [danger, setDanger] = useState(false)
+  const [doc, setDoc] = useState([])
 
-// #1
   async function getDocByID() {
 
       MongoQueries.FindDocByID(docID).then(function (response) {
@@ -88,81 +74,35 @@ const Edit = () => {
                   }  // end of ELSE
               })
   }
-// #2
-  async function saveDoc() {
 
-      update['set'] = setData
-      update['unset'] = unsetData
+  async function insertDoc() {
 
-      MongoQueries.SaveDocument(update).then(function (response) {
+      MongoQueries.insertDocument(doc).then(function (response) {
                   if(!response.ok){
                       console.log(response);
                       if (response.json.length === 0)
-                      toast.error("Something went wrong!");
+                      toast.error("Something Went Wrong!");
                   }
                   return response.json();
               })
               .then(function (resultJSON) {
                   if (resultJSON["$undefined"] === true) {
-                      toast.error("Something went wrong!");
-                      console.log('Something went wrong');
+                      toast.error("Something Went Wrong!");
+                      console.log('Something Went Wrong');
                       return(resultJSON);
                   } else {
-                      console.log("Saving... "  );
-                      if (resultJSON.modifiedCount.$numberInt > 0) {
-                          toast.success("Changes have been successfully saved")
+                      console.log("Inserting... "  );
+                      if (resultJSON.insertedId !== 'undefined') {
+                          toast.success("Changes Have been Successfully Saved")
+                          var insertedId = resultJSON.insertedId.$oid
+                          console.log(insertedId)
+                          window.open('#/edit/'+insertedId,'_self');
 
                       } else {
                           toast.info("There are no changes to save in the document")
                       }
                   }
-                })
-    for (var unset in unsetData) {
-      var element = document.getElementById('form-'+unset);
-      element.remove()
-    }
-    //console.log('unset', unsetData)
-    //console.log('set', setData)
-    //console.log('update', update)
-  }
-// #3
-  async function deleteDocByID() {
-      var confirmation_id = document.getElementById('confirm-id').value;
-      if (confirmation_id === '') {
-        toast.error("Type the document ID to confirm.")
-      }
-      else if (confirmation_id !== docID) {
-        toast.error("Wrong ID!")
-      }
-      else {
-        console.log('good ', confirmation_id)
-        MongoQueries.deleteDocument(docID).then(function (response) {
-                if(!response.ok){
-                    console.log(response);
-                    if (response.json.length === 0)
-                    toast.error("Something went wrong!");
-                }
-                return response.json();
-                })
-                .then(function (resultJSON) {
-                if (resultJSON["$undefined"] === true) {
-                    toast.error("Something went wrong!");
-                    console.log('Something went wrong');
-                    return(resultJSON);
-                } else {
-                    console.log("Deleteing... "  );
-                    if (resultJSON.deletedCount.$numberInt > 0) {
-                        toast.success("The Document "+docID+" has been deleted")
-                        window.open('#/search/','_self');
-
-                    } else {
-                        toast.success("The Document "+docID+" can't be deleted")
-                    }
-                }
-                })
-                setDanger(!danger)
-      }
-
+  })
   }
 
 
@@ -171,20 +111,9 @@ const Edit = () => {
     if (source !== 'api')
       {
           html = html.replace(/<\/?p>/g, '')
-          setData[key] = html
+          QuillData[key] = html
+          doc[key] = html
      }
-  }
-
-  const removeField = (key) => {
-          unsetData[key] = ''
-          var element = document.getElementById('card-'+key);
-          element.classList.add('to-be-removed');
-  }
-
-  const reset = (key) => {
-          delete unsetData[key]
-          var element = document.getElementById('card-'+key);
-          element.classList.remove('to-be-removed');
   }
 
   async function addNewField (fieldName) {
@@ -199,18 +128,19 @@ const Edit = () => {
         newDoc[i] = doc[j];
         newDoc[j] = temp;
       }
+
     setDoc(newDoc[0])
+  }
+
+  const removeField = (key) => {
+          delete doc[key]
+          var element = document.getElementById('form-'+key);
+          element.remove()
   }
 
   useEffect(() => {
     getDocByID()
   }, [])
-
-  function print() {
-    console.log('unset', unsetData)
-    console.log('set', setData)
-    console.log('update', update)
-  }
 
   console.log(doc)
 
@@ -219,8 +149,7 @@ const Edit = () => {
       <CRow>
         <CCol xs="12" sm="9" className="search-form-group">
             <CCardHeader>
-              Editing Document
-              <small style={{color: 'blue' }}> {docID}</small>
+              Insert Document
               <DocsLink name="search"/>
             </CCardHeader>
             <CCardBody>
@@ -247,18 +176,10 @@ const Edit = () => {
                               <CFormGroup>
                                 <CCol sm="12" className='QuillHeader'>
                                     <ReactQuill id={key} modules={QuillOptions} value={value} onChange={(html, delta, source, editor) => {QuillChange(html, delta, source, editor, key)}}/>
-                                    <br></br>
                                 </CCol>
                               </CFormGroup>
                             </CCardBody>
                             <CCardFooter className='deleteFieldsButtonContainer'>
-                            <CTooltip content="restore">
-                                <span className='ql-formats'>
-                                  <CLink className="card-header-action quill-actions" onClick={() => reset(key)}>
-                                    <CIcon name={'cil-sync'} />
-                                  </CLink>
-                                </span>
-                              </CTooltip>
                               <CTooltip content="delete">
                                 <span className='ql-formats'>
                                   <CLink className="card-header-action quill-actions" onClick={() => removeField(key)}>
@@ -312,52 +233,8 @@ const Edit = () => {
                   </CFade>
             </CCardBody>
             <CCardFooter className='editButtonContainer'>
-              <CButton color="danger" onClick={() => getDocByID()} style={{ width: '30%' }}>Discard Changes</CButton> <CButton color="secondary" onClick={() => saveDoc()} style={{ width: '30%' }}>Save</CButton>
-                <br></br>
-                <br></br>
+              <CButton color="danger" onClick={() => getDocByID()} style={{ width: '30%' }}>Discard Changes</CButton> <CButton color="secondary" onClick={() => insertDoc()} style={{ width: '30%' }}>Save</CButton>
             </CCardFooter>
-            <CFade className="row" in={showCard}>
-              <CCard borderColor="danger">
-                <CCardHeader>
-                  Danger Zone
-                  <div className="card-header-actions">
-                    <CLink className="card-header-action" onClick={() => setCollapse(!collapse)}>
-                      <CIcon name={collapse ? 'cil-chevron-bottom':'cil-chevron-top'} />
-                    </CLink>
-                    <CLink className="card-header-action" onClick={() => setShowCard(false)}>
-                      <CIcon name="cil-x-circle" />
-                    </CLink>
-                  </div>
-                </CCardHeader>
-                <CCollapse show={!collapse}>
-                  <CCardBody>
-                    <h4>Delete this document</h4>
-                    <h5><CIcon style={{color: '#ffc107', width:'2rem', height:'2rem' }} name={'cil-warning'} /> Once you delete a document, there is no going back. Please be certain.</h5>
-                    <CCardFooter className='editButtonContainer'>
-                    <CButton color="danger" onClick={() => setDanger(!danger)}>Delete this document</CButton>
-                    <CModal
-                      show={danger}
-                      onClose={() => setDanger(!danger)}
-                      color="danger"
-                    >
-                      <CModalHeader closeButton>
-                        <CModalTitle><CIcon style={{color: '#ffc107', width:'2rem', height:'2rem' }} name={'cil-warning'} /> Are you sure?</CModalTitle>
-                      </CModalHeader>
-                      <CModalBody style={{textAlign:'left'}}>
-                      <p>This action cannot be undone. This will permanently delete the document <span style={{color: 'red' }}> {docID}</span>.</p><p>Please type the document ID to confirm.</p>
-                      <CFormGroup>
-                        <CInput id="confirm-id" required />
-                      </CFormGroup>
-                      </CModalBody>
-                      <CModalFooter>
-                        <CButton color="danger" onClick={() => deleteDocByID()}>I understand, Delete This Document.</CButton>{' '}
-                      </CModalFooter>
-                    </CModal>
-                    </CCardFooter>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-            </CFade>
         </CCol>
       </CRow>
       <br></br>
@@ -365,4 +242,4 @@ const Edit = () => {
   )
 }
 
-export default Edit
+export default Insert
