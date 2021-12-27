@@ -1,0 +1,6 @@
+{
+  "name": "Insert",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Insert.js"
+}
