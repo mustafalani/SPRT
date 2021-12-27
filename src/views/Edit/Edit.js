@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import FloatingLabelInput from 'react-floating-label-input';
 import ReactQuill, { Quill } from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import {toast} from 'react-toastify';
