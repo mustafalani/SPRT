@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
 import FloatingLabelInput from 'react-floating-label-input';
 import {
   CButton,
@@ -8,12 +9,37 @@ import {
   CCol,
   CFormGroup,
   CInputGroupAppend,
-  CRow
+  CRow,
+  CInputRadio,
+  CLabel
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
 import MongoDB from '../../utils/api/MongoDB';
 
+
+
 const Search = ({value}) => {
+
+const searchOptions = {
+    "arg": "phrase",
+    "BBSK": "phrase",
+    "TITL": "phrase",
+    "OPHV": "phrase",
+    "MEDV": "phrase"
+}
+
+
+function handleOptions(textField,searchOption) {
+  searchOptions[textField] = searchOption
+}
+
+function print() {
+  console.log(searchOptions)
+}
+
+const refreshPage = ()=>{
+     window.location.reload();
+  }
 
   return (
     <>
@@ -31,6 +57,20 @@ const Search = ({value}) => {
                   <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
                     <FloatingLabelInput id="fritext" label="Fritekst:" value={value} required/>
                   </CFormGroup>
+                  <div class="search-options-radio">
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="arg-radio1" name="arg" onChange={() => handleOptions('arg','phrase')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="arg-radio1">Exact</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="arg-radio2" name="arg" onChange={() => handleOptions('arg','and')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="arg-radio2">And</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="arg-radio3" name="arg" onChange={() => handleOptions('arg','text')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="arg-radio3">Any</CLabel>
+                    </CFormGroup>
+                  </div>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
@@ -38,6 +78,24 @@ const Search = ({value}) => {
                   <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
                     <FloatingLabelInput id="BBSK" label="Billedbeskrivelse:" value={value} required/>
                   </CFormGroup>
+                  <div class="search-options-radio">
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="BBSK-radio1" name="BBSK" onChange={() => handleOptions('BBSK','phrase')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio1">Exact</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="BBSK-radio2" name="BBSK" onChange={() => handleOptions('BBSK','and')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio2">And</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="BBSK-radio3" name="BBSK" onChange={() => handleOptions('BBSK','text')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio3">Any</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="BBSK-radio4" name="BBSK" onChange={() => handleOptions('BBSK','fuzzy')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio4">Fuzzy</CLabel>
+                    </CFormGroup>
+                  </div>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
@@ -45,6 +103,24 @@ const Search = ({value}) => {
                   <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
                     <FloatingLabelInput id="TITL" label="Titel:" value={value} required/>
                   </CFormGroup>
+                  <div class="search-options-radio">
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="TITL-radio1" name="TITL" onChange={() => handleOptions('TITL','phrase')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio1">Exact</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="TITL-radio2" name="TITL" onChange={() => handleOptions('TITL','and')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio2">And</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="TITL-radio3" name="TITL" onChange={() => handleOptions('TITL','text')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio3">Any</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="TITL-radio4" name="TITL" onChange={() => handleOptions('TITL','fuzzy')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio4">Fuzzy</CLabel>
+                    </CFormGroup>
+                  </div>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
@@ -52,6 +128,24 @@ const Search = ({value}) => {
                   <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
                     <FloatingLabelInput id="OPHV" label="Reporter:" value={value} required/>
                   </CFormGroup>
+                  <div class="search-options-radio">
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="OPHV-radio1" name="OPHV" onChange={() => handleOptions('OPHV','phrase')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio1">Exact</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="OPHV-radio2" name="OPHV" onChange={() => handleOptions('OPHV','and')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio2">And</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="OPHV-radio3" name="OPHV" onChange={() => handleOptions('OPHV','text')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio3">Any</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="OPHV-radio4" name="OPHV" onChange={() => handleOptions('OPHV','fuzzy')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio4">Fuzzy</CLabel>
+                    </CFormGroup>
+                  </div>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
@@ -59,6 +153,24 @@ const Search = ({value}) => {
                   <CFormGroup class="search-form-control" style={{ fontSize: 18 }}>
                     <FloatingLabelInput id="MEDV" label="Medvirkende:" value={value} required/>
                   </CFormGroup>
+                  <div class="search-options-radio">
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="MEDV-radio1" name="MEDV" onChange={() => handleOptions('MEDV','phrase')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio1">Exact</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="MEDV-radio2" name="MEDV" onChange={() => handleOptions('MEDV','and')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio2">And</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="MEDV-radio3" name="MEDV" onChange={() => handleOptions('MEDV','text')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio3">Any</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="MEDV-radio4" name="MEDV" onChange={() => handleOptions('MEDV','fuzzy')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio4">Fuzzy</CLabel>
+                    </CFormGroup>
+                  </div>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
@@ -85,7 +197,14 @@ const Search = ({value}) => {
               <CFormGroup row>
                 <CCol>
                   <CInputGroupAppend>
-                    <CButton color="secondary" onClick={() => MongoDB.search()} style={{ width: '100%' }}>Søg</CButton>
+                    <CButton color="secondary" onClick={() => MongoDB.search(searchOptions)} style={{ width: '100%' }}>Søg</CButton>
+                  </CInputGroupAppend>
+                </CCol>
+              </CFormGroup>
+              <CFormGroup row>
+                <CCol>
+                  <CInputGroupAppend>
+                    <CButton color="danger" onClick={refreshPage} style={{ width: '100%' }}>Rens alle felter</CButton>
                   </CInputGroupAppend>
                 </CCol>
               </CFormGroup>

@@ -90,7 +90,7 @@ const routes = [
   { path: '/search', name: 'Search SPRT', component: Search },
   { path: '/docs/search', name: 'Document - Search', component: SearchDoc },
   { path: '/edit', name: 'Edit Document', component: Edit },
-  { path: '/Insert', name: 'Insert Document', component: Insert },
+  { path: '/insert', name: 'Insert Document', component: Insert },
 ];
 
 export default routes;
