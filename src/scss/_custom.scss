@@ -39,6 +39,27 @@ a {
 border-bottom: none!important;
 }
 
+.search-options-radio {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1.5em;
+  font-size: 0.8em;
+}
+
+.custom-control-label::before {
+  background: unset
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #6c757d;
+  background-color: #6c757d;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: unset
+}
+
 #results {
   width: 100%;
 }

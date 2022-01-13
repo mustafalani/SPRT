@@ -6,22 +6,21 @@ const fields = settings[0].Fields
 
 export default class MongoDB {
 
-  static search() {
+  static search(searchOptions) {
         const moment = window.moment;
         let txt = "";
         let counter = "Ingen resultater";
         let searchString = document.getElementById("fritext").value;
-        console.log(searchString);
 
         //----------------- MODIFY WEBHOOK_URL BELOW ------------------------
-        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
-        //let webhook_url = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sprt-zzhhc/service/SPRT-SEARCH/incoming_webhook/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
+        //let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
+        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
 
 
 
         let webUrl = webhook_url;
-
         //let runtime = document.getElementById("runtime").value;
+        let _SOPT = searchOptions;
         let BBSK = document.getElementById("BBSK").value;
         let TITL = document.getElementById("TITL").value;
         let MEDV = document.getElementById("MEDV").value;
@@ -38,8 +37,10 @@ export default class MongoDB {
           "KEYW" : KEYW,
           "OPHV" : OPHV,
           "UDAT" : UDAT,
-          "BNNA" : BNNA
+          "BNNA" : BNNA,
+          "SearchOptions" : _SOPT
         };
+        console.log(data);
 
         fetch(webUrl, {
           method: 'POST',

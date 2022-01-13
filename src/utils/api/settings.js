@@ -2,7 +2,9 @@ const settings = [
 {
   "MongoDB":
   {
-      "server": "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents",
+      "server": "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents",
+      "dev_app_id":"sprt-bvzmi",
+      "prod_app_id":"sprt-zzhhc",
       "secret" : "uHi6L3zGigVv6V2",
       "webhooks" : {
         "search" : "search",
