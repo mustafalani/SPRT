@@ -23,6 +23,7 @@ export default class MongoDB {
         let _SOPT = searchOptions;
         let BBSK = document.getElementById("BBSK").value;
         let TITL = document.getElementById("TITL").value;
+        let BAGR = document.getElementById("BAGR").value;
         let MEDV = document.getElementById("MEDV").value;
         let KEYW = document.getElementById("KEYW").value;
         let OPHV = document.getElementById("OPHV").value;
@@ -33,6 +34,7 @@ export default class MongoDB {
           "arg" : searchString,
           "BBSK" : BBSK,
           "TITL" : TITL,
+          "BAGR" : BAGR,
           "MEDV" : MEDV,
           "KEYW" : KEYW,
           "OPHV" : OPHV,
@@ -255,7 +257,7 @@ export default class MongoDB {
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed d-grid gap-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${[i]}" aria-expanded="true" aria-controls="collapse${[i]}">
-                          <p><b>Dok. nr. ${[i+1]} af ${results.length}</b></p>
+                          <p><b>Dok. nr. ${[i+1]} af ${results.length}</b><b> / Scores</b> <b style="background-color: #04ff00">${results[i].score.$numberDouble}</b></p>
                           <h4><span>Titel:</span><span style="color:green"> ${results[i].TITL }</span></h4>
                           <h5><span>Udsendelsesdato:</span><span style="color:blue"> ${moment(results[i].UDAT, "YYYYMMDD").format('LL')}</span></h5>
                         </button>

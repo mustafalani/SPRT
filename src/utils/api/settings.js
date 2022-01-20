@@ -3,6 +3,8 @@ const settings = [
   "MongoDB":
   {
       "server": "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents",
+      "login_url": "https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/",
+      "app_id": "sprt-bvzami",
       "dev_app_id":"sprt-bvzmi",
       "prod_app_id":"sprt-zzhhc",
       "secret" : "uHi6L3zGigVv6V2",
