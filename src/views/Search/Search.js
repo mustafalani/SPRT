@@ -272,7 +272,7 @@ const refreshPage = ()=>{
               <CFormGroup row>
                 <CCol>
                   <CInputGroupAppend>
-                    <CButton color="danger" onClick={print} style={{ width: '100%' }}>Rens alle felter</CButton>
+                    <CButton color="danger" onClick={refreshPage} style={{ width: '100%' }}>Rens alle felter</CButton>
                   </CInputGroupAppend>
                 </CCol>
               </CFormGroup>
