@@ -26,7 +26,7 @@ const _nav =  [
     to: '/search',
     icon: 'cilSettings',
   },
-  {
+  /*{
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },
@@ -327,7 +327,7 @@ const _nav =  [
     className: 'm-2'
   }
     ],
-  },
+  },*/
 
 ]
 
