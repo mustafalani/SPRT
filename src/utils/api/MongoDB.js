@@ -183,13 +183,10 @@ export default class MongoDB {
                 console.log(items)
                 let obje = items["_id"];
                 dataTable +=
-                      `<tr>
-                        <th scope="row" field="_id">_id</th>
-                        <td>${obje["$oid"]}</td>
-                      </tr>`
+                      `<code>${obje["$oid"]}</code>`
                 for (var key in items) {
                   var itemName
-                  if (key !== "_id" && key !== "highlight" && key !== "score" && key!== "DOCN" && key!== "TITL" && key!== "UDAT" && key!== "IDAT" && key!== "RDAT") {
+                  if (key !== "_id" && key !== "highlight" && key !== "score" && key!== "DOCN") {
                         if (fields[key] !== undefined) {
                           itemName = fields[key]
                         }
@@ -199,7 +196,7 @@ export default class MongoDB {
                         let obje = items["_id"]
                       dataTable += `
                             <tr>
-                              <div id="msg-${[key]}-${obje["$oid"]}"></div>
+
                               <th scope="row" docid="${obje["$oid"]}" field="${[key]}">${itemName} <div class="d-none"><button id="Save-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="saveOne('${[key]}-${obje["$oid"]}','${[key]}','${obje["$oid"]}')">Save</button><button id="Undo-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="undo('${[key]}-${obje["$oid"]}')">Undo</button></div></th>
                               <td id="${[key]}-${obje["$oid"]}" class="editable"><span>${items[key]}<span></td>
                             </tr>`
@@ -257,7 +254,7 @@ export default class MongoDB {
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed d-grid gap-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${[i]}" aria-expanded="true" aria-controls="collapse${[i]}">
-                          <p><b>Dok. nr. ${[i+1]} af ${results.length}</b><b> / Scores</b> <b style="background-color: #04ff00">${results[i].score.$numberDouble}</b></p>
+                          <p><b>Dok. nr. ${[i+1]} af ${results.length}</b></p>
                           <h4><span>Titel:</span><span style="color:green"> ${results[i].TITL }</span></h4>
                           <h5><span>Udsendelsesdato:</span><span style="color:blue"> ${moment(results[i].UDAT, "YYYYMMDD").format('LL')}</span></h5>
                         </button>
