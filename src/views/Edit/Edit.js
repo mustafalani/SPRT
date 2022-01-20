@@ -218,8 +218,8 @@ const Edit = () => {
       <CRow>
         <CCol xs="12" sm="9" className="search-form-group">
             <CCardHeader>
-              Editing Document
-              <small style={{color: 'blue' }}> {docID}</small>
+              Edit Document
+              <code> {docID}</code>
               <DocsLink name="search"/>
             </CCardHeader>
             <CCardBody>
