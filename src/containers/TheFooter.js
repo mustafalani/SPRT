@@ -8,7 +8,7 @@ const TheFooter = () => {
       <div>
 
       </div>
-        <span class="text-muted">Søgning med SPRT v1.4.1</span>
+        <span class="text-muted">Søgning med SPRT v2.0.0</span>
       </div>
     </CFooter>
   )

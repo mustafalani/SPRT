@@ -7,20 +7,12 @@ import {
   CHeaderNav,
   CHeaderNavItem,
   CHeaderNavLink,
-  CSubheader,
-  CBreadcrumbRouter,
-  CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-// routes config
-import routes from '../routes'
 
 import {
   TheHeaderDropdown,
-  TheHeaderDropdownMssg,
-  TheHeaderDropdownNotif,
-  TheHeaderDropdownTasks
 }  from './index'
 
 const TheHeader = () => {
@@ -60,26 +52,10 @@ const TheHeader = () => {
         <CHeaderNavItem className="px-3" >
           <CHeaderNavLink to="/insert">Insert Document</CHeaderNavLink>
         </CHeaderNavItem>
-        <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/search">Settings</CHeaderNavLink>
-        </CHeaderNavItem>
       </CHeaderNav>
-{/* A JSX comment
-      <CHeaderNav className="d-md-down-none mr-auto">
-        <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/settings">Settings</CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/ingest">Ingest</CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/assets">Assets</CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem  className="px-3">
-          <CHeaderNavLink to="/users">Users</CHeaderNavLink>
-        </CHeaderNavItem>
-      </CHeaderNav>*/}
-{/*// d-none<CHeaderNav className="px-3"><CSubheader className="px-3 justify-content-between" ><div className="d-md-down-none mfe-2 c-subheader-nav">*/}
+      <CHeaderNav className="px-3">
+        <TheHeaderDropdown/>
+      </CHeaderNav>
     </CHeader>
   )
 }

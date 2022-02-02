@@ -50,30 +50,7 @@ const Insert = () => {
 
   const [doc, setDoc] = useState([])
 
-  async function getDocByID() {
 
-      MongoQueries.FindDocByID(docID).then(function (response) {
-                  if(!response.ok){
-                      console.log(response);
-                      if (response.json.length === 0)
-                      throw Error(response.statusText);
-                  }
-                  return response.json();
-              })
-              .then(function (resultJSON) {
-                  if (resultJSON["$undefined"] === true) {
-                      console.log('NO FETCH RESULT');
-                      return(resultJSON);
-                  } else {
-                      console.log("FETCHED RESULT... "  );
-                      if (resultJSON.length !== 0) {
-                          console.log("Fetched array has " + resultJSON.length + " entries");
-                          console.log(resultJSON);
-                          setDoc(resultJSON[0])
-                      }
-                  }  // end of ELSE
-              })
-  }
 
   async function insertDoc() {
 
@@ -96,7 +73,7 @@ const Insert = () => {
                           toast.success("Changes Have been Successfully Saved")
                           var insertedId = resultJSON.insertedId.$oid
                           console.log(insertedId)
-                          window.open('#/edit/'+insertedId,'_self');
+                          window.open('/edit/'+insertedId,'_self');
 
                       } else {
                           toast.info("There are no changes to save in the document")
@@ -138,9 +115,7 @@ const Insert = () => {
           element.remove()
   }
 
-  useEffect(() => {
-    getDocByID()
-  }, [])
+
 
   console.log(doc)
 
@@ -233,7 +208,7 @@ const Insert = () => {
                   </CFade>
             </CCardBody>
             <CCardFooter className='editButtonContainer'>
-              <CButton color="danger" onClick={() => getDocByID()} style={{ width: '30%' }}>Discard Changes</CButton> <CButton color="secondary" onClick={() => insertDoc()} style={{ width: '30%' }}>Save</CButton>
+              <CButton color="secondary" onClick={() => insertDoc()} style={{ width: '30%' }}>Save</CButton>
             </CCardFooter>
         </CCol>
       </CRow>

@@ -1,8 +1,17 @@
 import ReactQuill, { Quill } from "react-quill";
 import 'react-quill/dist/quill.bubble.css';
+import CookiesHelper from '../../utils/CookiesHelper';
+import CryptoJS from "crypto-js";
 
 import settings from '../../utils/api/settings.js';
 const fields = settings[0].Fields
+
+
+const access_token = CookiesHelper.getCookie('access_token')
+const email = CookiesHelper.getCookie('email')
+const encryptedPassword = CookiesHelper.getCookie('encryptedPassword')
+const bytes = CryptoJS.AES.decrypt(encryptedPassword, access_token)
+const password = bytes.toString(CryptoJS.enc.Utf8)
 
 export default class MongoDB {
 
@@ -13,8 +22,8 @@ export default class MongoDB {
         let searchString = document.getElementById("fritext").value;
 
         //----------------- MODIFY WEBHOOK_URL BELOW ------------------------
-        //let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
-        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
+        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
+        //let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents/search?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
 
 
 
@@ -31,6 +40,8 @@ export default class MongoDB {
         let BNNA = document.getElementById("BNNA").value;
         // if (genre!= 'All') will be used for TV stations
         const data = {
+          "email": email,
+          "password": password,
           "arg" : searchString,
           "BBSK" : BBSK,
           "TITL" : TITL,
@@ -53,13 +64,16 @@ export default class MongoDB {
         })
         .then(function (response) {
                     if(!response.ok){
+                      return response.json().then(json => {
                         console.log(response);
-                        txt += `<div class="alert alert-danger" role="alert">Sadly you have an error. Status: <b>${response.status}</div>`;
+                        console.log(json.error);
+                        txt += `<div class="alert alert-danger" role="alert"><p>Sadly you have an error.</p><p>Status: <b>${response.status} ${json.error}</p></div>`;
                         if (response.json.length === 0)
                             txt+=`<div class="alert alert-warning" role="alert">Make sure to search for some type of result. Don't leave your search box empty!</div>`;
                         document.getElementById("results").innerHTML = txt;
                         document.getElementById("counter").innerHTML = counter;
                         throw Error(response.statusText);
+                      })
                     }
                     return response.json();
                 })
@@ -180,7 +194,7 @@ export default class MongoDB {
                 // RECONSTRUCT ARRAY FOR RESULTS TABLE
                 let dataTable = "";
                 let items = results[i];
-                console.log(items)
+                //console.log(items)
                 let obje = items["_id"];
                 dataTable +=
                       `<code>${obje["$oid"]}</code>`
@@ -197,8 +211,9 @@ export default class MongoDB {
                       dataTable += `
                             <tr>
 
-                              <th scope="row" docid="${obje["$oid"]}" field="${[key]}">${itemName} <div class="d-none"><button id="Save-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="saveOne('${[key]}-${obje["$oid"]}','${[key]}','${obje["$oid"]}')">Save</button><button id="Undo-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="undo('${[key]}-${obje["$oid"]}')">Undo</button></div></th>
+                              <th scope="row" docid="${obje["$oid"]}" field="${[key]}">${itemName} <div class="d-none"><button id="Save-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="saveOne('${[key]}-${obje["$oid"]}','${[key]}','${obje["$oid"]}','${email}','${password}')">Save</button><button id="Undo-${[key]}-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="undo('${[key]}-${obje["$oid"]}')">Undo</button></div></th>
                               <td id="${[key]}-${obje["$oid"]}" class="editable"><span>${items[key]}<span></td>
+                              <td id="msg-${[key]}-${obje["$oid"]}" class="editable"><span><span></td>
                             </tr>`
                   }
                 }
@@ -261,7 +276,7 @@ export default class MongoDB {
                       </h2>
                       <div id="collapse${[i]}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#searchReasult${[i]}">
                         <div class="accordion-body">
-                          <div><button id="Edit-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="window.open('#/edit/${obje["$oid"]}', '_blank');">Edit This Document in New Window</div>
+                          <div><button id="Edit-${obje["$oid"]}" type="button" class="btn btn-primary action-btn" onclick="window.open('/edit/${obje["$oid"]}', '_blank');">Edit This Document in New Window</div>
                         <div class="callout callout-info">
                         <p>${highlights}</p>
                         </div>

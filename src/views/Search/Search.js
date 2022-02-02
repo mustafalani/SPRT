@@ -1,6 +1,9 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import FloatingLabelInput from 'react-floating-label-input';
+import CookiesHelper from '../../utils/CookiesHelper';
+import jwt_decode from "jwt-decode";
+
 import {
   CButton,
   CCard,
@@ -15,9 +18,11 @@ import {
   CInput
 } from '@coreui/react'
 import { DocsLink } from 'src/reusable'
-import MongoDB from '../../utils/api/MongoDB';
+import MongoQueries from '../../utils/api/mongoQueries';
+//import MongoDB from '../../utils/api/MongoDB';
 
-
+const access_token = CookiesHelper.getCookie('access_token')
+const decoded_access_token = jwt_decode(access_token);
 
 const Search = ({value}) => {
 
@@ -35,7 +40,13 @@ function handleOptions(textField,searchOption) {
 }
 
 function print() {
-  console.log(searchOptions)
+  if (Date.now()/1000 < decoded_access_token.exp) {
+  console.log('valid')
+  }
+  else {
+    console.log(Date.now() / 1000 , decoded_access_token.exp)
+  }
+
 }
 
 const refreshPage = ()=>{
@@ -265,7 +276,7 @@ const refreshPage = ()=>{
               <CFormGroup row>
                 <CCol>
                   <CInputGroupAppend>
-                    <CButton color="secondary" onClick={() => MongoDB.search(searchOptions)} style={{ width: '100%' }}>Søg</CButton>
+                    <CButton color="secondary" onClick={() => MongoQueries.Search(searchOptions)} style={{ width: '100%' }}>Søg</CButton>
                   </CInputGroupAppend>
                 </CCol>
               </CFormGroup>
