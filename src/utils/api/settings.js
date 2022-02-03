@@ -2,7 +2,7 @@ const settings = [
 {
   "MongoDB":
   {
-      "server": "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents",
+      "server": "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents",
       "login_url": "https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/",
       "app_id": "sprt-zzhhc",
       "dev_app_id":"sprt-bvzmi",

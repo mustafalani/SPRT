@@ -38,9 +38,7 @@ const Charts = () => {
                   } else {
                       console.log("FETCHED RESULT... "  );
                       if (resultJSON.length !== 0) {
-                          console.log("Fetched array has " + resultJSON.length + " entries");
                           setColCounter(resultJSON)
-                          console.log(colCounter.$numberLong);
                       }
                   }  // end of ELSE
               })
