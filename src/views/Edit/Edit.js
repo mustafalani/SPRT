@@ -27,6 +27,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { DocsLink } from 'src/reusable'
+
 import MongoQueries from '../../utils/api/mongoQueries';
 
 import settings from '../../utils/api/settings.js';
@@ -94,35 +95,36 @@ const Edit = () => {
       update['unset'] = unsetData
 
       MongoQueries.SaveDocument(update).then(function (response) {
-                  if(!response.ok){
-                      console.log(response);
-                      if (response.json.length === 0)
+                  if (response.ok) {
+                      return response.json();
+                    }
+                  else {
                       toast.error("Something went wrong!");
-                  }
-                  return response.json();
-              })
-              .then(function (resultJSON) {
-                  if (resultJSON["$undefined"] === true) {
-                      toast.error("Something went wrong!");
-                      console.log('Something went wrong');
-                      return(resultJSON);
-                  } else {
-                      console.log("Saving... "  );
-                      if (resultJSON.modifiedCount.$numberInt > 0) {
+                    }
+                  })
+                  .then((responseJson)=> {
+                  if (responseJson["$undefined"] === true) {
+                        toast.error("Something went wrong!");
+                        console.log('Something went wrong');
+                        return(responseJson);
+                    }
+                  else {
+                    console.log("Saving... "  );
+                      if (responseJson.modifiedCount.$numberInt > 0) {
                           toast.success("Changes have been successfully saved")
-
-                      } else {
+                      }
+                      else {
                           toast.info("There are no changes to save in the document")
                       }
-                  }
-                })
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                  });
     for (var unset in unsetData) {
       var element = document.getElementById('form-'+unset);
       element.remove()
     }
-    //console.log('unset', unsetData)
-    //console.log('set', setData)
-    //console.log('update', update)
   }
 // #3
   async function deleteDocByID() {
@@ -136,29 +138,32 @@ const Edit = () => {
       else {
         console.log('good ', confirmation_id)
         MongoQueries.deleteDocument(docID).then(function (response) {
-                if(!response.ok){
-                    console.log(response);
-                    if (response.json.length === 0)
-                    toast.error("Something went wrong!");
-                }
-                return response.json();
-                })
-                .then(function (resultJSON) {
-                if (resultJSON["$undefined"] === true) {
-                    toast.error("Something went wrong!");
-                    console.log('Something went wrong');
-                    return(resultJSON);
-                } else {
-                    console.log("Deleteing... "  );
-                    if (resultJSON.deletedCount.$numberInt > 0) {
-                        toast.success("The Document "+docID+" has been deleted")
-                        window.open('#/search/','_self');
-
-                    } else {
-                        toast.success("The Document "+docID+" can't be deleted")
+                  if (response.ok) {
+                      return response.json();
                     }
-                }
-                })
+                  else {
+                      toast.error("Something went wrong!");
+                    }
+                  })
+                  .then((responseJson)=> {
+                  if (responseJson["$undefined"] === true) {
+                        toast.error("Something went wrong!");
+                        console.log('Something went wrong');
+                        return(responseJson);
+                    }
+                  else {
+                    console.log("Deleteing... "  );
+                    if (responseJson.deletedCount.$numberInt > 0) {
+                      toast.success("The Document "+docID+" has been deleted")
+                        window.open('/search/','_self');
+                    } else {
+                        toast.warning("The Document "+docID+" can't be deleted")
+                      }
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                  });
                 setDanger(!danger)
       }
 

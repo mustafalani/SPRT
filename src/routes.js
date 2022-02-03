@@ -1,5 +1,7 @@
 import React from 'react';
 
+import RequireAuth from "./components/RequireAuth";
+
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
 
@@ -43,6 +45,8 @@ const Search = React.lazy(() => import('./views/Search'));
 const SearchDoc = React.lazy(() => import('./views/docs/SearchDoc'));
 const Edit = React.lazy(() => import('./views/Edit'));
 const Insert = React.lazy(() => import('./views/Insert'));
+const LastInsertedDocument = React.lazy(() => import('./views/LastInsertedDocument'));
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -87,10 +91,11 @@ const routes = [
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/Login', exact: true, name: 'Login', component: Login },
   // SPRT
-  { path: '/search', name: 'Search SPRT', component: Search },
-  { path: '/docs/search', name: 'Document - Search', component: SearchDoc },
-  { path: '/edit', name: 'Edit Document', component: Edit },
-  { path: '/insert', name: 'Insert Document', component: Insert },
+  { path: '/search', name: 'Search SPRT', component: RequireAuth(Search) },
+  { path: '/docs/search', name: 'Document - Search', component: RequireAuth(SearchDoc) },
+  { path: '/edit', name: 'Edit Document', component: RequireAuth(Edit) },
+  { path: '/insert', name: 'Insert Document', component: RequireAuth(Insert) },
+  { path: '/LastInsertedDocument', name: 'Last Inserted Document', component: RequireAuth(LastInsertedDocument) },
 ];
 
 export default routes;

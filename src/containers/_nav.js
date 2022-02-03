@@ -15,6 +15,26 @@ const _nav =  [
     icon: 'cilNoteAdd',
   },
   {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Utils',
+    icon: 'cil-bolt',
+    _children: [
+    {
+    _tag: 'CSidebarNavItem',
+    name: 'Last Inserted',
+    to: '/LastInsertedDocument',
+    icon: 'cil-bolt',
+    },
+    {
+      _tag: 'CSidebarNavItem',
+      name: 'Charts',
+      to: '/charts',
+      icon: 'cil-chart-pie'
+    },
+    ]
+  },
+  /*
+  {
     _tag: 'CSidebarNavItem',
     name: 'Documentation',
     to: '/docs/search',
@@ -26,7 +46,7 @@ const _nav =  [
     to: '/search',
     icon: 'cilSettings',
   },
-  /*{
+  {
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },

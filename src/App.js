@@ -1,5 +1,5 @@
 import React, { Component, useState }from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import RequireNoAuth from "./components/RequireNoAuth";
 import RequireAuth from "./components/RequireAuth";
 import CookiesHelper from './utils/CookiesHelper';
@@ -30,21 +30,9 @@ class App extends Component {
     // this.authenticate()
   }
 
-  authenticate = () => {
-    MongoQueries.authenticate().then(response => {
-      const user_id = response.data.user_id;
-      const access_token = response.data.access_token;
-      const refresh_token = response.data.refresh_token;
-
-      CookiesHelper.setCookie('user_id', user_id)
-      CookiesHelper.setCookie('access_token', access_token)
-      CookiesHelper.setCookie('refresh_token', refresh_token)
-    });
-  };
-
   render() {
   return (
-      <HashRouter>
+      <BrowserRouter>
           <React.Suspense fallback={loading}>
             <Switch>
               <Route exact path="/login" name="Login Page" component={RequireNoAuth(Login)} />
@@ -56,7 +44,7 @@ class App extends Component {
               />
               <Route exact path="/404" name="Page 404" component={RequireNoAuth(Page404)} />
               <Route exact path="/500" name="Page 500" component={RequireNoAuth(Page500)} />
-              <Route path="/" name="Home" component={RequireNoAuth(TheLayout)} />
+              <Route path="/" name="Home" component={RequireAuth(TheLayout)} />
           </Switch>
           </React.Suspense>
            <ToastContainer
@@ -67,7 +55,7 @@ class App extends Component {
                 draggable
                 pauseOnHover
            />
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
