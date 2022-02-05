@@ -18,8 +18,8 @@ function saveOne(fieldID,field,docID,email,password) {
         let msg = "";
 
         //----------------- MODIFY WEBHOOK_URL BELOW ------------------------
-        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/update?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
-        //let webhook_url = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sprt-zzhhc/service/SPRT-SEARCH/incoming_webhook/update";//<-PRODUCTION->sprt-zzhhc
+        //let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-bvzmi/endpoint/documents/update?secret=uHi6L3zGigVv6V2";//<-DEVELOPMENT->sprt-bvzmi
+        let webhook_url = "https://eu-central-1.aws.data.mongodb-api.com/app/sprt-zzhhc/endpoint/documents/update?secret=uHi6L3zGigVv6V2";//<-PRODUCTION->sprt-zzhhc
 
 
         let webUrl = webhook_url;

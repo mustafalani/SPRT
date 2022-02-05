@@ -82,9 +82,13 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="arg-radio3" name="arg" onChange={() => handleOptions('arg','text')}/>
                       <CLabel variant="custom-checkbox" htmlFor="arg-radio3">Any</CLabel>
                     </CFormGroup>
+                    <CFormGroup variant="custom-radio" inline>
+                      <CInputRadio custom id="arg-radio4" name="arg" onChange={() => handleOptions('arg','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="arg-radio4">Wildcard</CLabel>
+                    </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="arg-radio4" name="arg" onChange={() => handleOptions('arg','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="arg-radio4">Near</CLabel>
+                      <CInputRadio custom id="arg-radio5" name="arg" onChange={() => handleOptions('arg','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="arg-radio5">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="Near" name="arg" onChange={e => handleOptions('arg_near',e.target.value)} placeholder="words"/>
@@ -115,8 +119,12 @@ const refreshPage = ()=>{
                       <CLabel variant="custom-checkbox" htmlFor="BBSK-radio4">Fuzzy</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="BBSK-radio5" name="BBSK" onChange={() => handleOptions('BBSK','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio5">Near</CLabel>
+                      <CInputRadio custom id="BBSK-radio5" name="BBSK" onChange={() => handleOptions('BBSK','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio5">Wildcard</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                      <CInputRadio custom id="BBSK-radio6" name="BBSK" onChange={() => handleOptions('BBSK','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BBSK-radio6">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="BBSK-Near" name="BBSK" onChange={e => handleOptions('BBSK_near',e.target.value)} placeholder="words"/>
@@ -147,8 +155,12 @@ const refreshPage = ()=>{
                       <CLabel variant="custom-checkbox" htmlFor="TITL-radio4">Fuzzy</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="TITL-radio5" name="TITL" onChange={() => handleOptions('TITL','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio5">Near</CLabel>
+                      <CInputRadio custom id="TITL-radio5" name="TITL" onChange={() => handleOptions('TITL','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio5">Wildcard</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                      <CInputRadio custom id="TITL-radio6" name="TITL" onChange={() => handleOptions('TITL','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="TITL-radio6">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="TITL-Near" name="TITL" onChange={e => handleOptions('TITL_near',e.target.value)} placeholder="words"/>
@@ -179,8 +191,12 @@ const refreshPage = ()=>{
                       <CLabel variant="custom-checkbox" htmlFor="BAGR-radio4">Fuzzy</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="BAGR-radio5" name="BAGR" onChange={() => handleOptions('BAGR','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="BAGR-radio5">Near</CLabel>
+                      <CInputRadio custom id="BAGR-radio5" name="BAGR" onChange={() => handleOptions('BAGR','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BAGR-radio5">Wildcard</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                      <CInputRadio custom id="BAGR-radio6" name="BAGR" onChange={() => handleOptions('BAGR','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="BAGR-radio6">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="BAGR-Near" name="BAGR" onChange={e => handleOptions('BAGR_near',e.target.value)} placeholder="words"/>
@@ -211,8 +227,12 @@ const refreshPage = ()=>{
                       <CLabel variant="custom-checkbox" htmlFor="OPHV-radio4">Fuzzy</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="OPHV-radio5" name="OPHV" onChange={() => handleOptions('OPHV','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio5">Near</CLabel>
+                      <CInputRadio custom id="OPHV-radio5" name="OPHV" onChange={() => handleOptions('OPHV','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio5">Wildcard</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                      <CInputRadio custom id="OPHV-radio6" name="OPHV" onChange={() => handleOptions('OPHV','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="OPHV-radio6">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="OPHV-Near" name="OPHV" onChange={e => handleOptions('OPHV_near',e.target.value)} placeholder="words"/>
@@ -243,8 +263,12 @@ const refreshPage = ()=>{
                       <CLabel variant="custom-checkbox" htmlFor="MEDV-radio4">Fuzzy</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
-                      <CInputRadio custom id="MEDV-radio5" name="MEDV" onChange={() => handleOptions('MEDV','near')}/>
-                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio5">Near</CLabel>
+                      <CInputRadio custom id="MEDV-radio5" name="MEDV" onChange={() => handleOptions('MEDV','wildcard')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio5">Wildcard</CLabel>
+                    </CFormGroup>
+                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                      <CInputRadio custom id="MEDV-radio6" name="MEDV" onChange={() => handleOptions('MEDV','near')}/>
+                      <CLabel variant="custom-checkbox" htmlFor="MEDV-radio6">Near</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" style={{ width: 70, padding:0 }} inline>
                       <CInput type="number" className="search-near-number" id="MEDV-Near" name="MEDV" onChange={e => handleOptions('MEDV_near',e.target.value)} placeholder="words"/>
