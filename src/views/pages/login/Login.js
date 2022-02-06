@@ -84,8 +84,8 @@ class Login extends Component {
               <CCard className="text-white bg-secondary py-5 d-md-down-none" style={{ width: '44%' }}>
                 <CCardBody>
                   <CForm>
-                    <h1 style={{"text-align": "center"}}>Welcome to SPRT Search</h1>
-                    <p className="text-muted" style={{"text-align": "center"}}>Sign In to your account</p>
+                    <h1 style={{"textAlign": "center"}}>Welcome to SPRT Search</h1>
+                    <p className="text-muted" style={{"textAlign": "center"}}>Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>

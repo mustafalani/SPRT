@@ -207,7 +207,7 @@ const LastInsertedDocument = () => {
   return (
     <>
       <CRow>
-        <CCol xs="12" sm="9" className="search-form-group">
+        <CCol xs="12" sm="12" className="search-form-group">
             <CCardHeader>
               <code> {docID}</code>
               <DocsLink name="search"/>

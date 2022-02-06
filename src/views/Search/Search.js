@@ -56,7 +56,7 @@ const refreshPage = ()=>{
   return (
     <>
       <CRow>
-        <CCol xs="12" sm="9" className="search-form-group">
+        <CCol xs="12" sm="12" className="search-form-group">
           <CCard>
             <CCardHeader>
               Søgning med
@@ -86,7 +86,7 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="arg-radio4" name="arg" onChange={() => handleOptions('arg','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="arg-radio4">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="arg-radio5" name="arg" onChange={() => handleOptions('arg','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="arg-radio5">Near</CLabel>
                     </CFormGroup>
@@ -118,11 +118,11 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="BBSK-radio4" name="BBSK" onChange={() => handleOptions('BBSK','fuzzy')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BBSK-radio4">Fuzzy</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="BBSK-radio5" name="BBSK" onChange={() => handleOptions('BBSK','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BBSK-radio5">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="BBSK-radio6" name="BBSK" onChange={() => handleOptions('BBSK','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BBSK-radio6">Near</CLabel>
                     </CFormGroup>
@@ -154,11 +154,11 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="TITL-radio4" name="TITL" onChange={() => handleOptions('TITL','fuzzy')}/>
                       <CLabel variant="custom-checkbox" htmlFor="TITL-radio4">Fuzzy</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="TITL-radio5" name="TITL" onChange={() => handleOptions('TITL','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="TITL-radio5">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="TITL-radio6" name="TITL" onChange={() => handleOptions('TITL','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="TITL-radio6">Near</CLabel>
                     </CFormGroup>
@@ -190,11 +190,11 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="BAGR-radio4" name="BAGR" onChange={() => handleOptions('BAGR','fuzzy')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BAGR-radio4">Fuzzy</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="BAGR-radio5" name="BAGR" onChange={() => handleOptions('BAGR','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BAGR-radio5">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="BAGR-radio6" name="BAGR" onChange={() => handleOptions('BAGR','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="BAGR-radio6">Near</CLabel>
                     </CFormGroup>
@@ -226,11 +226,11 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="OPHV-radio4" name="OPHV" onChange={() => handleOptions('OPHV','fuzzy')}/>
                       <CLabel variant="custom-checkbox" htmlFor="OPHV-radio4">Fuzzy</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="OPHV-radio5" name="OPHV" onChange={() => handleOptions('OPHV','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="OPHV-radio5">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="OPHV-radio6" name="OPHV" onChange={() => handleOptions('OPHV','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="OPHV-radio6">Near</CLabel>
                     </CFormGroup>
@@ -262,11 +262,11 @@ const refreshPage = ()=>{
                       <CInputRadio custom id="MEDV-radio4" name="MEDV" onChange={() => handleOptions('MEDV','fuzzy')}/>
                       <CLabel variant="custom-checkbox" htmlFor="MEDV-radio4">Fuzzy</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="MEDV-radio5" name="MEDV" onChange={() => handleOptions('MEDV','wildcard')}/>
                       <CLabel variant="custom-checkbox" htmlFor="MEDV-radio5">Wildcard</CLabel>
                     </CFormGroup>
-                    <CFormGroup variant="custom-radio" style={{ 'margin-right': 5}} inline>
+                    <CFormGroup variant="custom-radio" style={{ 'marginRight': 5}} inline>
                       <CInputRadio custom id="MEDV-radio6" name="MEDV" onChange={() => handleOptions('MEDV','near')}/>
                       <CLabel variant="custom-checkbox" htmlFor="MEDV-radio6">Near</CLabel>
                     </CFormGroup>
