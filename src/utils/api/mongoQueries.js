@@ -341,7 +341,7 @@ export default class MongoQueries {
             highlight_length = results[i].highlight.length;
             // BUILD OUT HIGHLIGHTS FROM  TITL FIELD
             let highlights = "";
-            for (j = 0; j < highlight_length; j++) {
+            for (j = highlight_length; j--;) {
               let highlightName = results[i].highlight[j].path
 
               if (highlightName === "TITL") {
