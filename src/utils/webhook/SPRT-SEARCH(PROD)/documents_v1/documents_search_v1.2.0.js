@@ -1,5 +1,5 @@
 exports = function(payload,response) {
-  const results =  context.services.get("mongodb-atlas").db("TV3").collection("SPRT");
+  const results =  context.services.get("mongodb-atlas").db("tv3").collection("sprt");
   let body = payload.body;
   let data = JSON.parse(body.text());
 
@@ -47,7 +47,7 @@ exports = function(payload,response) {
     }
   }, {
     $project: {
-      ID:0,
+      FAKEID:0,
       score: {
         '$meta': 'searchScore'
       },
@@ -132,10 +132,5 @@ exports = function(payload,response) {
           }};
       calledAggregation[0].$search.compound.filter.push(docnStage);
     }
-
-    //response.setStatusCode(200);
-    //response.setHeader("Content-Type", "application/json");
-    //response.setBody(JSON.stringify(results.aggregate(calledAggregation).toArray()));
-    //return data;
   return results.aggregate(calledAggregation).toArray();
 };

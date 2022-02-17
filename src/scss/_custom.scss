@@ -39,8 +39,22 @@ a {
   border: $input-border-width solid;
   border-radius: 0.25rem;
   }
+.search-field-card {
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-bottom: unset;
+    border: 1px solid #fff!important;
+}
+
 .FloatingLabelInput {
-border-bottom: none!important;
+  border-bottom: none!important;
+  margin-top: 0.75rem;
 }
 
 .search-options-radio {
@@ -51,13 +65,30 @@ border-bottom: none!important;
   font-size: 0.8em;
 }
 
+.search-config-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 16px;
+  padding: 0!important;
+  z-index: 9999;
+}
+
+.search-options-config {
+  float: right;
+  font-size: 11px;
+}
+
 .search-near-number {
 
-  margin-top: -0.5rem;
   background: unset!important;
   color: #ffffff!important;
-  border: unset!important;
-  padding-left: 0px!important;
+  font-size: 10px!important;
+}
+
+.search-config-input {
+
+  margin-top: -0.5rem;
   font-size: 1em!important;
 
 }
@@ -67,8 +98,8 @@ border-bottom: none!important;
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #6c757d;
-  background-color: #6c757d;
+  border-color: #dc3644;
+  background-color: #dc3644;
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
@@ -259,3 +290,18 @@ html[data-theme="dark"] {
     font-size: 0.875rem!important;
     border-radius: 0.2rem!important;
   }
+
+.tippy-content {
+  max-width:unset!important;
+  height: 1.4;
+}
+
+.tippy-box{
+  width: 100%;
+  max-width:unset!important;
+  height: 1.4;
+}
+
+.data-tippy-root{
+  max-width:unset!important;
+}

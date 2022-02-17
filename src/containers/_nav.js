@@ -33,14 +33,14 @@ const _nav =  [
     },
     ]
   },
-  /*
+  /**/
   {
     _tag: 'CSidebarNavItem',
     name: 'Documentation',
-    to: '/docs/search',
+    to: '/documentation',
     icon: 'cil-school',
   },
-  {
+  /*{
     _tag: 'CSidebarNavItem',
     name: 'Settings',
     to: '/search',
