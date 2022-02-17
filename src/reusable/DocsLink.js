@@ -8,7 +8,7 @@ const DocsLink = props => {
     ...rest
   } = props
 
-  const href = name ? `/docs/${name}` : props.href
+  const href = name ? `/doc/${name}` : props.href
 
   return (
     <div className="card-header-actions">

@@ -42,10 +42,11 @@ const User = React.lazy(() => import('./views/users/User'));
 const Login = React.lazy(() => import('./views/pages/login/Login'));
 //SPRT
 const Search = React.lazy(() => import('./views/Search'));
-const SearchDoc = React.lazy(() => import('./views/docs/SearchDoc'));
 const Edit = React.lazy(() => import('./views/Edit'));
 const Insert = React.lazy(() => import('./views/Insert'));
 const LastInsertedDocument = React.lazy(() => import('./views/LastInsertedDocument'));
+const Docs = React.lazy(() => import('./views/docs/Docs'));
+const SearchDoc = React.lazy(() => import('./views/docs/SearchDoc'));
 
 
 const routes = [
@@ -92,10 +93,11 @@ const routes = [
   { path: '/Login', exact: true, name: 'Login', component: Login },
   // SPRT
   { path: '/search', name: 'Search SPRT', component: RequireAuth(Search) },
-  { path: '/docs/search', name: 'Document - Search', component: RequireAuth(SearchDoc) },
   { path: '/edit', name: 'Edit Document', component: RequireAuth(Edit) },
   { path: '/insert', name: 'Insert Document', component: RequireAuth(Insert) },
   { path: '/LastInsertedDocument', name: 'Last Inserted Document', component: RequireAuth(LastInsertedDocument) },
+  { path: '/documentation/', name: 'Documents', component: RequireAuth(Docs) },
+  { path: '/doc/search', name: 'Document - Search', component: RequireAuth(SearchDoc) },
 ];
 
 export default routes;
